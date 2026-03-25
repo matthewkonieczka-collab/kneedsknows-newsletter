@@ -1,0 +1,162 @@
+<!--
+  KneedsKnows Newsletter Signup — Squarespace Embed
+
+  HOW TO USE:
+  1. Deploy the API to Render (see render.yaml)
+  2. Replace API_URL below with your Render URL (e.g., https://kneedsknows-newsletter.onrender.com)
+  3. In Squarespace: Add Page → Blank → Add Block → Code
+  4. Paste this entire snippet into the Code Block
+  5. Toggle "Display Source" OFF
+-->
+
+<div id="kk-newsletter" style="
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  text-align: center;
+">
+  <h2 style="
+    font-size: 2rem;
+    font-weight: 700;
+    color: #d4af37;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  ">Level Up Every Week</h2>
+
+  <p style="
+    font-size: 1rem;
+    color: #999;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  ">Free weekly breakdown of the best insights on health, wealth, relationships & personal growth. Join the community.</p>
+
+  <form id="kk-form" onsubmit="kkSubmit(event)" style="
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  ">
+    <div style="display: flex; gap: 12px;">
+      <input type="text" name="first_name" placeholder="First Name" required style="
+        flex: 1;
+        padding: 14px 16px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background: #111;
+        color: #fff;
+        font-size: 0.95rem;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.2s;
+      " onfocus="this.style.borderColor='#d4af37'" onblur="this.style.borderColor='#333'" />
+      <input type="text" name="last_name" placeholder="Last Name" required style="
+        flex: 1;
+        padding: 14px 16px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background: #111;
+        color: #fff;
+        font-size: 0.95rem;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.2s;
+      " onfocus="this.style.borderColor='#d4af37'" onblur="this.style.borderColor='#333'" />
+    </div>
+
+    <input type="email" name="email" placeholder="Email Address" required style="
+      padding: 14px 16px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #111;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    " onfocus="this.style.borderColor='#d4af37'" onblur="this.style.borderColor='#333'" />
+
+    <input type="tel" name="phone" placeholder="Phone (optional)" style="
+      padding: 14px 16px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #111;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    " onfocus="this.style.borderColor='#d4af37'" onblur="this.style.borderColor='#333'" />
+
+    <button type="submit" id="kk-btn" style="
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #d4af37;
+      color: #000;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, transform 0.1s;
+    " onmouseover="this.style.background='#e5c349'" onmouseout="this.style.background='#d4af37'" onmousedown="this.style.transform='scale(0.98)'" onmouseup="this.style.transform='scale(1)'">
+      Subscribe Free
+    </button>
+  </form>
+
+  <p id="kk-msg" style="
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: #999;
+    min-height: 24px;
+  "></p>
+
+  <p style="
+    margin-top: 24px;
+    font-size: 0.75rem;
+    color: #555;
+  ">No spam. Unsubscribe anytime. Your info stays private.</p>
+</div>
+
+<script>
+// *** CHANGE THIS to your Render deployment URL ***
+const KK_API_URL = 'https://kneedsknows-newsletter.onrender.com';
+
+async function kkSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('kk-form');
+  const btn = document.getElementById('kk-btn');
+  const msg = document.getElementById('kk-msg');
+  const data = Object.fromEntries(new FormData(form));
+
+  btn.disabled = true;
+  btn.textContent = 'Subscribing...';
+  btn.style.opacity = '0.7';
+  msg.textContent = '';
+  msg.style.color = '#999';
+
+  try {
+    const res = await fetch(KK_API_URL + '/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+
+    if (res.ok) {
+      msg.style.color = '#d4af37';
+      msg.textContent = result.message || 'You are subscribed!';
+      form.reset();
+    } else {
+      throw new Error(result.detail?.[0]?.msg || result.detail || 'Something went wrong');
+    }
+  } catch (err) {
+    msg.style.color = '#ff4444';
+    msg.textContent = err.message || 'Connection error. Please try again.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Subscribe Free';
+    btn.style.opacity = '1';
+  }
+}
+</script>
