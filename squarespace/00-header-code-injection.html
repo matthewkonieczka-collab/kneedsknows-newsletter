@@ -1,0 +1,309 @@
+<!--
+  Kneeds.Knows global styles for Squarespace.
+
+  Paste this entire file (everything below this comment) into:
+      Squarespace dashboard
+      → Settings
+      → Advanced
+      → Code Injection
+      → HEADER
+
+  No find/replace needed. Your logo + favicon are handled by Squarespace's
+  native uploads (Design panel), not by this file.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* =============================================================
+     Kneeds.Knows brand variables + base
+     ============================================================= */
+  :root {
+    --kk-bg:        #0a0a0a;
+    --kk-card:      #141414;
+    --kk-border:    #222;
+    --kk-text:      #ffffff;
+    --kk-text-dim:  #a0a0a0;
+    --kk-text-soft: #c0c0c0;
+    --kk-magenta:   #E91FCC;
+    --kk-cyan:      #1FBFE8;
+    --kk-teal:      #1FD9C0;
+    --kk-grad:      linear-gradient(135deg, #E91FCC, #1FBFE8);
+    --kk-grad-hot:  linear-gradient(135deg, #F03DD9, #2DC9F2);
+    --kk-grad-text: linear-gradient(135deg, #1FBFE8, #1FD9C0);
+  }
+
+  /* Light branding touches on Squarespace's own header
+     (won't override your template's nav layout) */
+  .header-nav-item a,
+  .header-menu-nav-item a {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px;
+  }
+  .header-nav-item--collection a:hover,
+  .header-menu-nav-item a:hover {
+    color: var(--kk-cyan) !important;
+  }
+  /* "Subscribe" pill — apply by adding a "Button" link with text Subscribe
+     in your Squarespace header. Squarespace renders that as
+     .header-actions-action--cta a. */
+  .header-actions-action--cta a {
+    background: var(--kk-grad) !important;
+    color: #0a0a0a !important;
+    border: none !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+  }
+  .header-actions-action--cta a:hover {
+    background: var(--kk-grad-hot) !important;
+  }
+
+  /* =============================================================
+     Scoped reset inside every Code Block we drop in
+     ============================================================= */
+  .kk-block {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--kk-text);
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 24px 0 32px;
+    line-height: 1.5;
+  }
+  .kk-block * { box-sizing: border-box; }
+  .kk-block a { color: var(--kk-cyan); text-decoration: none; }
+  .kk-block a:hover { color: var(--kk-magenta); }
+
+  /* Hero */
+  .kk-hero { text-align: center; margin-bottom: 48px; }
+  .kk-hero .kk-badge {
+    display: inline-block;
+    background: rgba(31, 191, 232, 0.15);
+    color: var(--kk-cyan);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .kk-hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 16px;
+    color: var(--kk-text);
+  }
+  .kk-accent {
+    background: var(--kk-grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .kk-lede {
+    font-size: 17px;
+    color: var(--kk-text-dim);
+    line-height: 1.6;
+    max-width: 620px;
+    margin: 0 auto 22px;
+  }
+  .kk-disclosure { font-size: 12px; color: #666; max-width: 620px; margin: 0 auto; }
+
+  /* Section titles */
+  .kk-section-title {
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 10px;
+  }
+  .kk-section-sub {
+    font-size: 15px;
+    color: var(--kk-text-dim);
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+
+  /* Buttons */
+  .kk-btn {
+    display: inline-block;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+  .kk-btn-primary { background: var(--kk-grad); color: #0a0a0a; }
+  .kk-btn-primary:hover {
+    background: var(--kk-grad-hot);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(31, 191, 232, 0.3);
+    color: #0a0a0a;
+  }
+  .kk-btn-ghost {
+    background: transparent;
+    color: var(--kk-text);
+    border: 1px solid var(--kk-border);
+  }
+  .kk-btn-ghost:hover {
+    border-color: var(--kk-cyan);
+    color: var(--kk-cyan);
+  }
+  .kk-cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Grids */
+  .kk-grid { display: grid; gap: 20px; }
+  .kk-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kk-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .kk-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 880px) {
+    .kk-grid-3, .kk-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .kk-grid-2, .kk-grid-3, .kk-grid-4 { grid-template-columns: 1fr; }
+    .kk-hero h1 { font-size: 32px; }
+  }
+
+  /* Tiles */
+  .kk-tile {
+    background: var(--kk-card);
+    border: 1px solid var(--kk-border);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .kk-tile:hover { border-color: var(--kk-cyan); transform: translateY(-2px); }
+  .kk-tile-icon { font-size: 28px; margin-bottom: 12px; color: var(--kk-cyan); }
+  .kk-tile h3 { font-size: 18px; margin: 0 0 8px; }
+  .kk-tile p { font-size: 14px; color: var(--kk-text-dim); line-height: 1.5; margin: 0; }
+  /* Cycle logo colors across the 4 pillars */
+  .kk-pillars .kk-tile:nth-child(1) .kk-tile-icon { color: var(--kk-magenta); }
+  .kk-pillars .kk-tile:nth-child(2) .kk-tile-icon { color: var(--kk-teal); }
+  .kk-pillars .kk-tile:nth-child(3) .kk-tile-icon { color: var(--kk-cyan); }
+  .kk-pillars .kk-tile:nth-child(4) .kk-tile-icon { color: var(--kk-magenta); }
+
+  /* Link cards */
+  .kk-link-card {
+    display: block;
+    padding: 22px;
+    background: var(--kk-card);
+    border: 1px solid var(--kk-border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .kk-link-card:hover { border-color: var(--kk-cyan); transform: translateY(-2px); color: inherit; }
+  .kk-link-card h3 { font-size: 17px; color: var(--kk-text); margin: 0 0 6px; }
+  .kk-link-card p { font-size: 14px; color: var(--kk-text-dim); margin: 0; }
+
+  /* Deal cards */
+  .kk-deal {
+    background: var(--kk-card);
+    border: 1px solid var(--kk-border);
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.15s;
+  }
+  .kk-deal:hover { border-color: var(--kk-cyan); }
+  .kk-deal-header { display: flex; align-items: center; gap: 14px; }
+  .kk-deal-logo {
+    width: 56px; height: 56px; border-radius: 10px;
+    background: #1a1a1a;
+    display: flex; align-items: center; justify-content: center;
+    color: #444; font-size: 11px; overflow: hidden; flex: none;
+  }
+  .kk-deal-logo img { width: 100%; height: 100%; object-fit: cover; }
+  .kk-deal h3 { font-size: 18px; color: var(--kk-text); margin: 0; }
+  .kk-deal p { font-size: 14px; color: var(--kk-text-dim); line-height: 1.5; margin: 0; flex: 1; }
+  .kk-deal-code {
+    display: flex; align-items: center; gap: 10px;
+    background: #1a1a1a; border: 1px dashed #333;
+    border-radius: 10px; padding: 10px 14px;
+  }
+  .kk-deal-code .kk-code-label {
+    font-size: 11px; color: #888; letter-spacing: 1px; font-weight: 700;
+  }
+  .kk-deal-code code {
+    font-family: 'Montserrat', monospace;
+    font-weight: 700; color: var(--kk-cyan); font-size: 15px; letter-spacing: 1px;
+  }
+
+  /* Embed frames */
+  .kk-embed-frame {
+    background: var(--kk-card);
+    border: 1px solid var(--kk-border);
+    border-radius: 14px;
+    padding: 12px;
+    position: relative;
+  }
+  .kk-embed-frame iframe { display: block; border-radius: 10px; }
+  .kk-embed-note { text-align: center; font-size: 13px; color: #888; margin: 14px 0 0; line-height: 1.6; }
+  .kk-embed-note code { background: #1a1a1a; padding: 2px 8px; border-radius: 6px; color: var(--kk-cyan); font-size: 12px; }
+
+  /* Calendly + GoFundMe */
+  .calendly-inline-widget {
+    background: var(--kk-card); border: 1px solid var(--kk-border);
+    border-radius: 14px; overflow: hidden;
+  }
+  .kk-gofundme {
+    background: var(--kk-card); border: 1px solid var(--kk-border);
+    border-radius: 14px; padding: 32px; text-align: center;
+    max-width: 560px; margin: 0 auto;
+  }
+  .kk-gofundme-icon { font-size: 36px; color: var(--kk-magenta); margin-bottom: 12px; }
+  .kk-gofundme h3 { font-size: 22px; color: var(--kk-text); margin: 0 0 10px; }
+  .kk-gofundme p { color: var(--kk-text-dim); font-size: 15px; line-height: 1.6; margin: 0 0 20px; }
+
+  /* CTA banner */
+  .kk-cta-banner {
+    background: linear-gradient(135deg, rgba(233, 31, 204, 0.08), rgba(31, 191, 232, 0.05));
+    border: 1px solid #1d2230;
+    border-radius: 14px;
+    padding: 36px 24px;
+    text-align: center;
+    margin: 0 auto 24px;
+  }
+  .kk-cta-banner h2 { font-size: 24px; font-weight: 800; margin: 0 0 8px; }
+  .kk-cta-banner p { color: var(--kk-text-dim); font-size: 15px; margin: 0 0 20px; }
+
+  /* Subscribe form */
+  .kk-form .kk-form-row { display: flex; gap: 12px; }
+  .kk-form .kk-field { flex: 1; text-align: left; margin-bottom: 14px; }
+  .kk-form label { display: block; font-size: 13px; font-weight: 600; color: var(--kk-text-dim); margin-bottom: 6px; }
+  .kk-form input {
+    width: 100%; padding: 14px 16px; background: #1a1a1a;
+    border: 1px solid #333; border-radius: 10px; color: #fff;
+    font-family: 'Montserrat', sans-serif; font-size: 15px;
+    transition: border-color 0.2s; box-sizing: border-box;
+  }
+  .kk-form input:focus { outline: none; border-color: var(--kk-cyan); }
+  .kk-form input::placeholder { color: #555; }
+  .kk-form .kk-btn { width: 100%; margin-top: 8px; padding: 16px; }
+  .kk-form-card {
+    background: var(--kk-card); border: 1px solid var(--kk-border);
+    border-radius: 16px; padding: 28px;
+  }
+  @media (max-width: 480px) {
+    .kk-form .kk-form-row { flex-direction: column; gap: 0; }
+  }
+
+  /* Brand logo in Code Blocks (use if you want the logo above a Code Block) */
+  .kk-brand-logo { display: block; max-width: 220px; height: auto; margin: 0 auto 24px; }
+</style>

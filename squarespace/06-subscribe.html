@@ -1,0 +1,121 @@
+<!--
+  SUBSCRIBE — Newsletter signup Code Block (refreshed brand colors).
+  Paste into the Code Block on your Squarespace "/subscribe" page.
+  Replaces the older squarespace-embed.html one folder up.
+
+  The form POSTs to your Render API. If your URL is not
+  kneedsknows-newsletter.onrender.com, edit KK_API_URL at the bottom.
+-->
+
+<div class="kk-block">
+  <section class="kk-hero" style="margin-bottom: 32px;">
+    <span class="kk-badge">FREE WEEKLY NEWSLETTER</span>
+    <h1>Level Up <span class="kk-accent">Every Week</span></h1>
+    <p class="kk-lede">
+      Join thousands of readers getting actionable tips on
+      <strong style="color:#fff;">health, wealth, relationships, and personal growth</strong>
+      delivered to their inbox every Sunday.
+    </p>
+  </section>
+
+  <div class="kk-form-card" style="max-width: 520px; margin: 0 auto;">
+    <form id="kk-subscribe-form" class="kk-form">
+      <div class="kk-form-row">
+        <div class="kk-field">
+          <label for="kk-first">First Name</label>
+          <input type="text" id="kk-first" name="first_name" placeholder="John" required>
+        </div>
+        <div class="kk-field">
+          <label for="kk-last">Last Name</label>
+          <input type="text" id="kk-last" name="last_name" placeholder="Doe" required>
+        </div>
+      </div>
+      <div class="kk-field">
+        <label for="kk-email">Email Address</label>
+        <input type="email" id="kk-email" name="email" placeholder="john@example.com" required>
+      </div>
+      <div class="kk-field">
+        <label for="kk-phone">Phone Number <span style="font-weight:400;color:#666;">(optional)</span></label>
+        <input type="tel" id="kk-phone" name="phone" placeholder="+1 (555) 123-4567">
+      </div>
+      <button type="submit" id="kk-submit-btn" class="kk-btn kk-btn-primary">
+        <span class="kk-btn-text">Subscribe &mdash; It's Free</span>
+        <span class="kk-btn-loading" style="display:none;">Subscribing&hellip;</span>
+      </button>
+    </form>
+
+    <div id="kk-success" style="display:none; text-align:center;">
+      <div style="width:64px; height:64px; margin:0 auto 16px; border-radius:50%; background:rgba(31,191,232,0.15); color:var(--kk-cyan); display:flex; align-items:center; justify-content:center; font-size:28px;">&#10003;</div>
+      <h3 style="font-size:24px; margin:0 0 8px;">You're in!</h3>
+      <p style="color:var(--kk-text-dim); font-size:15px; margin:0;">Check your inbox this Sunday for your first weekly breakdown.</p>
+    </div>
+
+    <div id="kk-error" style="display:none; margin-top:14px;">
+      <p style="color:#e74c3c; font-size:14px; margin:0;" class="kk-error-text"></p>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin: 24px auto; max-width: 520px;">
+    <p style="font-size: 13px; color: #666; margin: 0 0 12px;">Join readers who are leveling up in:</p>
+    <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+      <span style="background:#1a1a1a; border:1px solid #333; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; color:var(--kk-cyan);">Health</span>
+      <span style="background:#1a1a1a; border:1px solid #333; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; color:var(--kk-cyan);">Wealth</span>
+      <span style="background:#1a1a1a; border:1px solid #333; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; color:var(--kk-cyan);">Relationships</span>
+      <span style="background:#1a1a1a; border:1px solid #333; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; color:var(--kk-cyan);">Personal Growth</span>
+    </div>
+  </div>
+
+  <p style="text-align:center; font-size:12px; color:#555; margin: 32px 0 0;">
+    We respect your privacy. Unsubscribe anytime.
+  </p>
+</div>
+
+<script>
+  (function() {
+    // CHANGE THIS if your Render deployment URL is different.
+    var KK_API_URL = 'https://kneedsknows-newsletter.onrender.com';
+
+    var form    = document.getElementById('kk-subscribe-form');
+    var btn     = document.getElementById('kk-submit-btn');
+    var txt     = btn.querySelector('.kk-btn-text');
+    var loading = btn.querySelector('.kk-btn-loading');
+    var success = document.getElementById('kk-success');
+    var errDiv  = document.getElementById('kk-error');
+    var errTxt  = errDiv.querySelector('.kk-error-text');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      txt.style.display = 'none';
+      loading.style.display = 'inline';
+      btn.disabled = true;
+      errDiv.style.display = 'none';
+
+      var payload = {
+        first_name: document.getElementById('kk-first').value,
+        last_name:  document.getElementById('kk-last').value,
+        email:      document.getElementById('kk-email').value,
+        phone:      document.getElementById('kk-phone').value || ''
+      };
+
+      fetch(KK_API_URL + '/api/subscribe', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload)
+      })
+      .then(function(res) {
+        return res.json().then(function(data) {
+          if (!res.ok) throw new Error(data.detail || 'Something went wrong');
+          form.style.display = 'none';
+          success.style.display = 'block';
+        });
+      })
+      .catch(function(err) {
+        errTxt.textContent = err.message || 'Connection error. Please try again.';
+        errDiv.style.display = 'block';
+        txt.style.display = 'inline';
+        loading.style.display = 'none';
+        btn.disabled = false;
+      });
+    });
+  })();
+</script>

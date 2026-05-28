@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store - Kneeds.Knows</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="/" class="brand" aria-label="Kneeds.Knows home">
+            <img src="/assets/logo.png" alt="Kneeds.Knows" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <span class="brand-fallback">Kneeds.Knows</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/store" aria-current="page">Store</a></li>
+            <li><a href="/deals">Deals</a></li>
+            <li><a href="/newsletter">Newsletter</a></li>
+            <li><a href="/book">Book</a></li>
+            <li><a href="/subscribe" class="cta">Subscribe</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+        <section class="page-hero">
+            <div class="badge">STORE</div>
+            <h1>Tools that <span class="accent">level you up</span>.</h1>
+            <p class="lede">
+                <!-- TODO: Replace with your real store intro copy -->
+                Digital guides, templates, and original products from Kneeds.Knows.
+                Every purchase directly supports the newsletter.
+            </p>
+        </section>
+
+        <!--
+        TODO: Replace each .product card below with a real product.
+        Each card needs: image URL, name, 1-line description, price, and a checkout link
+        (Stripe Payment Link, Gumroad URL, Squarespace product URL, etc.).
+        If you'd rather embed a Squarespace store block, replace this whole grid with the embed snippet.
+        -->
+        <section class="store-section">
+            <div class="grid grid-3">
+
+                <div class="product">
+                    <div class="product-img placeholder">
+                        <!-- <img src="REPLACE_WITH_PRODUCT_IMAGE_URL" alt="Product name"> -->
+                        <span>Image</span>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag">Coming Soon</span>
+                        <h3>Product One</h3>
+                        <p>Short, benefit-driven description of what the buyer gets.</p>
+                        <div class="product-footer">
+                            <span class="price">$--</span>
+                            <a href="#" class="btn btn-primary btn-sm">Buy</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-img placeholder">
+                        <span>Image</span>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag">Coming Soon</span>
+                        <h3>Product Two</h3>
+                        <p>Short, benefit-driven description of what the buyer gets.</p>
+                        <div class="product-footer">
+                            <span class="price">$--</span>
+                            <a href="#" class="btn btn-primary btn-sm">Buy</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-img placeholder">
+                        <span>Image</span>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag">Coming Soon</span>
+                        <h3>Product Three</h3>
+                        <p>Short, benefit-driven description of what the buyer gets.</p>
+                        <div class="product-footer">
+                            <span class="price">$--</span>
+                            <a href="#" class="btn btn-primary btn-sm">Buy</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <h2>Not ready to buy?</h2>
+            <p>Get the free weekly newsletter and we'll let you know when new products drop.</p>
+            <a href="/subscribe" class="btn btn-primary">Subscribe Free</a>
+        </section>
+
+        <footer class="site-footer">
+            <p>&copy; <span id="year"></span> Kneeds.Knows. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelector('.nav-toggle').addEventListener('click', (e) => {
+            const links = document.querySelector('.nav-links');
+            const expanded = e.currentTarget.getAttribute('aria-expanded') === 'true';
+            e.currentTarget.setAttribute('aria-expanded', String(!expanded));
+            links.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

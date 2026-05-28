@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter - Kneeds.Knows</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="/" class="brand" aria-label="Kneeds.Knows home">
+            <img src="/assets/logo.png" alt="Kneeds.Knows" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <span class="brand-fallback">Kneeds.Knows</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/store">Store</a></li>
+            <li><a href="/deals">Deals</a></li>
+            <li><a href="/newsletter" aria-current="page">Newsletter</a></li>
+            <li><a href="/book">Book</a></li>
+            <li><a href="/subscribe" class="cta">Subscribe</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+        <section class="page-hero">
+            <div class="badge">THE WEEKLY</div>
+            <h1>Every issue, <span class="accent">on one page</span>.</h1>
+            <p class="lede">
+                <!-- TODO: Replace with your own intro copy -->
+                One short breakdown each Sunday on health, wealth, relationships, and growth.
+                Read past issues below, or subscribe to get the next one in your inbox.
+            </p>
+            <a href="/subscribe" class="btn btn-primary">Subscribe Free</a>
+        </section>
+
+        <!--
+        TODO: Replace the iframe src with your actual Substack or Beehiiv embed URL.
+
+        Substack: use https://YOUR-SUBDOMAIN.substack.com/embed
+        Beehiiv:  use the inline-feed embed URL from your publication's settings.
+
+        If your platform provides a richer embed snippet (script tag), paste it
+        in place of the iframe below. The .embed-frame wrapper handles styling.
+        -->
+        <section class="embed-section">
+            <h2 class="section-title">Recent issues</h2>
+            <div class="embed-frame">
+                <iframe
+                    src="about:blank"
+                    title="Newsletter feed"
+                    width="100%"
+                    height="640"
+                    frameborder="0"
+                    scrolling="no"
+                    style="background: #141414; border-radius: 12px;">
+                </iframe>
+                <p class="embed-placeholder">
+                    <strong>Embed not configured.</strong>
+                    Paste your Substack or Beehiiv embed URL into the
+                    <code>iframe src</code> in <code>newsletter.html</code>.
+                </p>
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <h2>Don't miss the next one.</h2>
+            <p>Sunday mornings, one short, useful breakdown. That's it.</p>
+            <a href="/subscribe" class="btn btn-primary">Subscribe Free</a>
+        </section>
+
+        <footer class="site-footer">
+            <p>&copy; <span id="year"></span> Kneeds.Knows. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelector('.nav-toggle').addEventListener('click', (e) => {
+            const links = document.querySelector('.nav-links');
+            const expanded = e.currentTarget.getAttribute('aria-expanded') === 'true';
+            e.currentTarget.setAttribute('aria-expanded', String(!expanded));
+            links.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

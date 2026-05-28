@@ -95,5 +95,21 @@ async def index():
     return FileResponse(LANDING_DIR / "index.html")
 
 
+# Clean-URL routes for each page (extensionless paths -> .html files).
+# These must be declared BEFORE the StaticFiles mount.
+_PAGES = ["subscribe", "store", "deals", "newsletter", "book"]
+
+
+def _make_page_route(name: str):
+    async def _route():
+        return FileResponse(LANDING_DIR / f"{name}.html")
+    _route.__name__ = f"page_{name}"
+    return _route
+
+
+for _page in _PAGES:
+    app.add_api_route(f"/{_page}", _make_page_route(_page), methods=["GET"])
+
+
 # Serve static files (CSS, etc.)
 app.mount("/", StaticFiles(directory=str(LANDING_DIR)), name="static")

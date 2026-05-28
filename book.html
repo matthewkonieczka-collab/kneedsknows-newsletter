@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Call - Kneeds.Knows</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!--
+    TODO: Calendly inline embed assets.
+    Replace YOUR-CALENDLY-URL in the markup below with your real Calendly link
+    (e.g. https://calendly.com/yourname/consultation).
+    -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="/" class="brand" aria-label="Kneeds.Knows home">
+            <img src="/assets/logo.png" alt="Kneeds.Knows" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <span class="brand-fallback">Kneeds.Knows</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/store">Store</a></li>
+            <li><a href="/deals">Deals</a></li>
+            <li><a href="/newsletter">Newsletter</a></li>
+            <li><a href="/book" aria-current="page">Book</a></li>
+            <li><a href="/subscribe" class="cta">Subscribe</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+        <section class="page-hero">
+            <div class="badge">BOOK A CALL</div>
+            <h1>1:1 consultations &amp; <span class="accent">community support</span>.</h1>
+            <p class="lede">
+                <!-- TODO: Replace with your real intro copy -->
+                Want to go deeper than the newsletter? Book a 1:1 call to talk through
+                your specific situation &mdash; or contribute to the GoFundMe to help
+                keep this work free for everyone.
+            </p>
+        </section>
+
+        <section class="book-section">
+            <h2 class="section-title">Schedule a consultation</h2>
+            <p class="section-sub">
+                <!-- TODO: 1-line description of what consultations cover -->
+                30&ndash;60 minute calls, focused on whichever pillar you want to tackle:
+                health, wealth, relationships, or growth.
+            </p>
+
+            <!--
+            TODO: Replace data-url with your actual Calendly URL.
+            Example: data-url="https://calendly.com/yourname/30min?hide_gdpr_banner=1"
+            -->
+            <div class="calendly-inline-widget"
+                 data-url="https://calendly.com/YOUR-CALENDLY-URL"
+                 style="min-width:320px;height:700px;"></div>
+
+            <p class="embed-placeholder" id="calendly-placeholder">
+                <strong>Calendly not configured.</strong>
+                Paste your Calendly URL into the <code>data-url</code> attribute in
+                <code>book.html</code>.
+            </p>
+        </section>
+
+        <section class="gofundme-section">
+            <h2 class="section-title">Support the mission</h2>
+            <div class="gofundme-card">
+                <div class="gofundme-icon">&#9829;</div>
+                <h3>Keep Kneeds.Knows free</h3>
+                <p>
+                    <!-- TODO: Replace with what the GoFundMe is for -->
+                    Contributions help cover production costs, software, and the time
+                    it takes to write each weekly breakdown &mdash; so the newsletter
+                    can stay free for everyone.
+                </p>
+                <!-- TODO: Replace href with your GoFundMe URL -->
+                <a href="https://www.gofundme.com/f/YOUR-CAMPAIGN"
+                   target="_blank" rel="noopener"
+                   class="btn btn-primary">Contribute on GoFundMe &rarr;</a>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <p>&copy; <span id="year"></span> Kneeds.Knows. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelector('.nav-toggle').addEventListener('click', (e) => {
+            const links = document.querySelector('.nav-links');
+            const expanded = e.currentTarget.getAttribute('aria-expanded') === 'true';
+            e.currentTarget.setAttribute('aria-expanded', String(!expanded));
+            links.classList.toggle('open');
+        });
+
+        // Hide the "not configured" warning once a real Calendly URL is set.
+        const calUrl = document.querySelector('.calendly-inline-widget').dataset.url || '';
+        if (calUrl && !calUrl.includes('YOUR-CALENDLY-URL')) {
+            document.getElementById('calendly-placeholder').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deals & Discounts - Kneeds.Knows</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="/" class="brand" aria-label="Kneeds.Knows home">
+            <img src="/assets/logo.png" alt="Kneeds.Knows" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <span class="brand-fallback">Kneeds.Knows</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/store">Store</a></li>
+            <li><a href="/deals" aria-current="page">Deals</a></li>
+            <li><a href="/newsletter">Newsletter</a></li>
+            <li><a href="/book">Book</a></li>
+            <li><a href="/subscribe" class="cta">Subscribe</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-main">
+        <section class="page-hero">
+            <div class="badge">DEALS &amp; DISCOUNTS</div>
+            <h1>The tools I <span class="accent">actually use</span>.</h1>
+            <p class="lede">
+                <!-- TODO: Replace with your own intro copy -->
+                These are the products, apps, and services I personally use and recommend.
+                Where possible, I've negotiated discount codes so readers get a better deal.
+            </p>
+            <p class="disclosure">
+                <em>Disclosure: Some links below are affiliate links. Buying through them
+                supports Kneeds.Knows at no extra cost to you.</em>
+            </p>
+        </section>
+
+        <!--
+        TODO: Replace each .deal card with a real affiliate partner.
+        Each card needs: brand name, your 1-line take, discount code (or remove that block),
+        and the affiliate URL on the button.
+        Add or remove cards as needed.
+        -->
+        <section class="deals-section">
+            <div class="grid grid-2">
+
+                <div class="deal">
+                    <div class="deal-header">
+                        <div class="deal-logo placeholder"><span>Logo</span></div>
+                        <h3>Brand Name</h3>
+                    </div>
+                    <p>Your one-line take on why this product is worth buying.</p>
+                    <div class="deal-code">
+                        <span class="code-label">Code</span>
+                        <code>KNEEDS10</code>
+                    </div>
+                    <a href="#" target="_blank" rel="noopener" class="btn btn-primary">Get the Deal &rarr;</a>
+                </div>
+
+                <div class="deal">
+                    <div class="deal-header">
+                        <div class="deal-logo placeholder"><span>Logo</span></div>
+                        <h3>Brand Name</h3>
+                    </div>
+                    <p>Your one-line take on why this product is worth buying.</p>
+                    <div class="deal-code">
+                        <span class="code-label">Code</span>
+                        <code>LEVELUP</code>
+                    </div>
+                    <a href="#" target="_blank" rel="noopener" class="btn btn-primary">Get the Deal &rarr;</a>
+                </div>
+
+                <div class="deal">
+                    <div class="deal-header">
+                        <div class="deal-logo placeholder"><span>Logo</span></div>
+                        <h3>Brand Name</h3>
+                    </div>
+                    <p>Your one-line take on why this product is worth buying.</p>
+                    <a href="#" target="_blank" rel="noopener" class="btn btn-primary">Shop Now &rarr;</a>
+                </div>
+
+                <div class="deal">
+                    <div class="deal-header">
+                        <div class="deal-logo placeholder"><span>Logo</span></div>
+                        <h3>Brand Name</h3>
+                    </div>
+                    <p>Your one-line take on why this product is worth buying.</p>
+                    <a href="#" target="_blank" rel="noopener" class="btn btn-primary">Shop Now &rarr;</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <h2>New deals every month.</h2>
+            <p>The newsletter is where I post fresh codes first.</p>
+            <a href="/subscribe" class="btn btn-primary">Subscribe Free</a>
+        </section>
+
+        <footer class="site-footer">
+            <p>&copy; <span id="year"></span> Kneeds.Knows. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelector('.nav-toggle').addEventListener('click', (e) => {
+            const links = document.querySelector('.nav-links');
+            const expanded = e.currentTarget.getAttribute('aria-expanded') === 'true';
+            e.currentTarget.setAttribute('aria-expanded', String(!expanded));
+            links.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

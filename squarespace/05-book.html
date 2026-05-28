@@ -1,0 +1,79 @@
+<!--
+  BOOK — Calendly + GoFundMe Code Block.
+  Paste into the Code Block on your Squarespace "/book" page.
+
+  TWO things to replace before this works:
+    1. data-url on .calendly-inline-widget   →  your Calendly URL
+       Example:  data-url="https://calendly.com/yourname/30min"
+    2. href on the GoFundMe button           →  your GoFundMe campaign URL
+
+  The Calendly widget script + stylesheet at the top of this block are
+  required (Calendly serves the widget cross-origin; the script bootstraps
+  the iframe).
+-->
+
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+
+<div class="kk-block">
+  <section class="kk-hero">
+    <span class="kk-badge">BOOK A CALL</span>
+    <h1>1:1 consultations &amp; <span class="kk-accent">community support</span>.</h1>
+    <p class="kk-lede">
+      <!-- TODO: Replace with your real intro copy -->
+      Want to go deeper than the newsletter? Book a 1:1 call to talk through
+      your specific situation &mdash; or contribute to the GoFundMe to help
+      keep this work free for everyone.
+    </p>
+  </section>
+
+  <section style="margin-bottom: 48px;">
+    <h2 class="kk-section-title">Schedule a consultation</h2>
+    <p class="kk-section-sub">
+      <!-- TODO: 1-line description of what consultations cover -->
+      30&ndash;60 minute calls, focused on whichever pillar you want to
+      tackle: health, wealth, relationships, or growth.
+    </p>
+
+    <!-- REPLACE data-url with your real Calendly URL -->
+    <div class="calendly-inline-widget"
+         data-url="https://calendly.com/YOUR-CALENDLY-URL"
+         style="min-width:320px; height:700px;"></div>
+
+    <p class="kk-embed-note" id="kk-calendly-warn">
+      <strong>Calendly not configured.</strong>
+      Replace the <code>data-url</code> on
+      <code>.calendly-inline-widget</code> in this Code Block.
+    </p>
+  </section>
+
+  <section style="margin-bottom: 32px;">
+    <h2 class="kk-section-title">Support the mission</h2>
+    <div class="kk-gofundme">
+      <div class="kk-gofundme-icon">&#9829;</div>
+      <h3>Keep Kneeds.Knows free</h3>
+      <p>
+        <!-- TODO: Replace with what the GoFundMe is for -->
+        Contributions help cover production costs, software, and the time
+        it takes to write each weekly breakdown &mdash; so the newsletter
+        can stay free for everyone.
+      </p>
+      <!-- REPLACE href with your GoFundMe URL -->
+      <a href="https://www.gofundme.com/f/YOUR-CAMPAIGN"
+         target="_blank" rel="noopener"
+         class="kk-btn kk-btn-primary">Contribute on GoFundMe &rarr;</a>
+    </div>
+  </section>
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script>
+  (function() {
+    var w = document.querySelector('.calendly-inline-widget');
+    if (!w) return;
+    var url = w.dataset.url || '';
+    if (url && url.indexOf('YOUR-CALENDLY-URL') === -1) {
+      var warn = document.getElementById('kk-calendly-warn');
+      if (warn) warn.style.display = 'none';
+    }
+  })();
+</script>
